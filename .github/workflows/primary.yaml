@@ -12,6 +12,7 @@ jobs:
       - name: Print diff
         run: |
           git fetch origin main
+          echo "git diff origin/main...HEAD"
           git diff origin/main...HEAD > mydiff
           echo "mydiff = "
           cat mydiff
