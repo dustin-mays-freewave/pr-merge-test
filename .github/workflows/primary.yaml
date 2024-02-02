@@ -1,17 +1,26 @@
 name: Test workflow
 on:
-  pull_request:
+  push:
     branches: [ "main" ]
-    types: [opened]
+
 jobs:
   Job1:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
       - name: Print diff
         run: |
-          git fetch origin main
-          git diff origin/main...HEAD > mydiff
-          echo "mydiff = "
-          cat mydiff
+          BASH_SHA=${{ github.event.before }})
+          if [[ "$git rev-parse --verify $BASH_SHA^2" ]]; then
+            echo "This is a merge commit"
+            BASE_SHA=$(git rev-parse $BASE_SHA^2)
+          else
+            echo "This is not a merge commit"
+          fi
+          # Ouput the sha's for the diff
+          echo "BASE_SHA: $BASE_SHA"
+          echo "HEAD_SHA: ${{ github.sha }}"
