@@ -14,7 +14,7 @@ jobs:
 
       - name: Print diff
         run: |
-          BASH_SHA=${{ github.event.before }})
+          BASH_SHA=${{ github.event.before }}
           if [[ "$git rev-parse --verify $BASH_SHA^2" ]]; then
             echo "This is a merge commit"
             BASE_SHA=$(git rev-parse $BASE_SHA^2)
