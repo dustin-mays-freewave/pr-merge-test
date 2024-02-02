@@ -1,0 +1,17 @@
+name: Test workflow
+on:
+  pull_request:
+    branches: [ "main" ]
+    types: [opened]
+jobs:
+  Job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Print diff
+        run: |
+          git fetch origin main
+          git diff origin/main...HEAD > mydiff
+          echo "mydiff = "
+          cat mydiff
