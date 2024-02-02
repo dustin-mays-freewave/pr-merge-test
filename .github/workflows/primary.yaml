@@ -24,3 +24,4 @@ jobs:
           # Ouput the sha's for the diff
           echo "BASE_SHA: $BASE_SHA"
           echo "HEAD_SHA: ${{ github.sha }}"
+          git diff --name-only $BASE_SHA $HEAD_SHA
